@@ -5,7 +5,7 @@ const NewsCard = (props) => {
     
     const fullDate = new Date(props.newsdata.publishedAt)
     let date = fullDate.toString().split(" ")
-    console.log(date)
+    
     const hour = parseInt(date[4].substring(0,2))
     const time = hour > 12 ? true : false;
 

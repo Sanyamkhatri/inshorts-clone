@@ -4,7 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import NavInshorts from "./components/NavInshorts";
 import NewsContent from "./components/NewsContent/NewsContent";
-import apiKey from "./Data/config";
+
 
 function App() {
   const [categories, setCategories] = useState("general");
@@ -15,10 +15,8 @@ function App() {
   const newsApi = async () => {
     try {
 
-      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-
       const news = await axios.get(
-        `https://${proxyUrl}newsapi.org/v2/top-headlines?country=in&apiKey=${apiKey}&category=${categories}&pageSize=${loadmore}`
+        `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_API_KEY}&category=${categories}&pageSize=${loadmore}`
       );
       setNewsArray(news.data.articles);
       setNewsResult(news.data.totalResults);
@@ -27,7 +25,6 @@ function App() {
     }
   };
 
-  console.log(newsArray);
   useEffect(() => {
     newsApi(); 
     // eslint-disable-next-line
